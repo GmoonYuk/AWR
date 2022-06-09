@@ -44,8 +44,10 @@
     <Compile Include="AWR_InputTemplate.cs" />
     <Compile Include="AWR_Result.cs" />
     <Compile Include="Enum.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequiredDepth.cs" />
+    <Compile Include="ReturnValue.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

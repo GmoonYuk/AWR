@@ -46,7 +46,7 @@ namespace AWR.Model
         /// <summary>
         /// 필요면적(%)
         /// </summary>
-        public double RequireedArea { get; set; }
+        public double RequiredArea { get; set; }
 
         /// <summary>
         /// 필요수량(K㎥)

@@ -82,6 +82,9 @@
     <None Include="Files\AWR_Input.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Files\AWR_SET.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -116,6 +119,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Run16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
