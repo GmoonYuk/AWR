@@ -68,6 +68,8 @@
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool16 = new Infragistics.Win.UltraWinToolbars.ButtonTool("btnPrint");
             Infragistics.Win.Appearance appearance29 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance30 = new Infragistics.Win.Appearance();
+            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
             Infragistics.Win.Appearance appearance31 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance32 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance33 = new Infragistics.Win.Appearance();
@@ -121,6 +123,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel3_Fill_Panel = new Infragistics.Win.Misc.UltraPanel();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
             this.ultraGrid2 = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this._panel3_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this.ultraToolbarsManager2 = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
@@ -128,8 +132,6 @@
             this._panel3_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._panel3_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this.ultraLabel3 = new Infragistics.Win.Misc.UltraLabel();
-            this.btnCalc = new System.Windows.Forms.Button();
-            this.btnSet_Save = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -148,6 +150,13 @@
             this.panel3.SuspendLayout();
             this.panel3_Fill_Panel.ClientArea.SuspendLayout();
             this.panel3_Fill_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGrid2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager2)).BeginInit();
             this.SuspendLayout();
@@ -160,7 +169,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1314, 845);
+            this.tabControl1.Size = new System.Drawing.Size(1091, 578);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -169,9 +178,9 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1306, 817);
+            this.tabPage1.Size = new System.Drawing.Size(1083, 550);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Input";
+            this.tabPage1.Text = "입력";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
@@ -189,20 +198,19 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.ultraLabel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1300, 811);
-            this.splitContainer1.SplitterDistance = 834;
+            this.splitContainer1.Size = new System.Drawing.Size(1077, 544);
+            this.splitContainer1.SplitterDistance = 690;
             this.splitContainer1.TabIndex = 0;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnSet_Save);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 23);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(834, 788);
+            this.panel1.Size = new System.Drawing.Size(690, 521);
             this.panel1.TabIndex = 104;
             // 
             // groupBox3
@@ -214,7 +222,7 @@
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Location = new System.Drawing.Point(16, 416);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(803, 52);
+            this.groupBox3.Size = new System.Drawing.Size(659, 52);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "초기설정 정보";
@@ -248,12 +256,11 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.btnCalc);
             this.groupBox2.Controls.Add(this.ultraGrid3);
             this.groupBox2.Controls.Add(this.btnRead);
             this.groupBox2.Location = new System.Drawing.Point(16, 70);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(803, 340);
+            this.groupBox2.Size = new System.Drawing.Size(659, 340);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "생장시기별 필요수심 정보";
@@ -319,7 +326,7 @@
             this.ultraGrid3.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
             this.ultraGrid3.Location = new System.Drawing.Point(6, 51);
             this.ultraGrid3.Name = "ultraGrid3";
-            this.ultraGrid3.Size = new System.Drawing.Size(791, 283);
+            this.ultraGrid3.Size = new System.Drawing.Size(647, 283);
             this.ultraGrid3.TabIndex = 104;
             this.ultraGrid3.Text = "ultraGrid3";
             this.ultraGrid3.UseAppStyling = false;
@@ -327,7 +334,7 @@
             // btnRead
             // 
             this.btnRead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRead.Location = new System.Drawing.Point(641, 22);
+            this.btnRead.Location = new System.Drawing.Point(578, 22);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(75, 23);
             this.btnRead.TabIndex = 0;
@@ -344,7 +351,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(16, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(803, 52);
+            this.groupBox1.Size = new System.Drawing.Size(659, 52);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Area 정보";
@@ -388,7 +395,7 @@
             this.ultraLabel2.Location = new System.Drawing.Point(0, 0);
             this.ultraLabel2.Name = "ultraLabel2";
             this.ultraLabel2.Padding = new System.Drawing.Size(10, 0);
-            this.ultraLabel2.Size = new System.Drawing.Size(834, 23);
+            this.ultraLabel2.Size = new System.Drawing.Size(690, 23);
             this.ultraLabel2.TabIndex = 103;
             this.ultraLabel2.Text = "설정값";
             this.ultraLabel2.UseAppStyling = false;
@@ -403,7 +410,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 23);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(462, 788);
+            this.panel2.Size = new System.Drawing.Size(383, 521);
             this.panel2.TabIndex = 104;
             // 
             // ultraGrid1
@@ -466,7 +473,7 @@
             this.ultraGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ultraGrid1.Location = new System.Drawing.Point(0, 25);
             this.ultraGrid1.Name = "ultraGrid1";
-            this.ultraGrid1.Size = new System.Drawing.Size(462, 763);
+            this.ultraGrid1.Size = new System.Drawing.Size(383, 496);
             this.ultraGrid1.TabIndex = 103;
             this.ultraGrid1.Text = "ultraGrid1";
             this.ultraGrid1.UseAppStyling = false;
@@ -479,7 +486,7 @@
             this._panel1_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._panel1_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
             this._panel1_Toolbars_Dock_Area_Top.Name = "_panel1_Toolbars_Dock_Area_Top";
-            this._panel1_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(462, 25);
+            this._panel1_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(383, 25);
             this._panel1_Toolbars_Dock_Area_Top.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // ultraToolbarsManager1
@@ -526,9 +533,9 @@
             this._panel1_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.Transparent;
             this._panel1_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
             this._panel1_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._panel1_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 788);
+            this._panel1_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 521);
             this._panel1_Toolbars_Dock_Area_Bottom.Name = "_panel1_Toolbars_Dock_Area_Bottom";
-            this._panel1_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(462, 0);
+            this._panel1_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(383, 0);
             this._panel1_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // _panel1_Toolbars_Dock_Area_Left
@@ -539,7 +546,7 @@
             this._panel1_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
             this._panel1_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 0);
             this._panel1_Toolbars_Dock_Area_Left.Name = "_panel1_Toolbars_Dock_Area_Left";
-            this._panel1_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 788);
+            this._panel1_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 521);
             this._panel1_Toolbars_Dock_Area_Left.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // _panel1_Toolbars_Dock_Area_Right
@@ -548,9 +555,9 @@
             this._panel1_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.Transparent;
             this._panel1_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._panel1_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._panel1_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(462, 0);
+            this._panel1_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(383, 0);
             this._panel1_Toolbars_Dock_Area_Right.Name = "_panel1_Toolbars_Dock_Area_Right";
-            this._panel1_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 788);
+            this._panel1_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 521);
             this._panel1_Toolbars_Dock_Area_Right.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // ultraLabel1
@@ -567,7 +574,7 @@
             this.ultraLabel1.Location = new System.Drawing.Point(0, 0);
             this.ultraLabel1.Name = "ultraLabel1";
             this.ultraLabel1.Padding = new System.Drawing.Size(10, 0);
-            this.ultraLabel1.Size = new System.Drawing.Size(462, 23);
+            this.ultraLabel1.Size = new System.Drawing.Size(383, 23);
             this.ultraLabel1.TabIndex = 103;
             this.ultraLabel1.Text = "강우, 증발산 입력자료";
             this.ultraLabel1.UseAppStyling = false;
@@ -579,9 +586,9 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1306, 817);
+            this.tabPage2.Size = new System.Drawing.Size(1083, 550);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Simulation";
+            this.tabPage2.Text = "모의";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // panel3
@@ -594,7 +601,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 26);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1300, 788);
+            this.panel3.Size = new System.Drawing.Size(1077, 521);
             this.panel3.TabIndex = 105;
             // 
             // panel3_Fill_Panel
@@ -602,13 +609,45 @@
             // 
             // panel3_Fill_Panel.ClientArea
             // 
-            this.panel3_Fill_Panel.ClientArea.Controls.Add(this.ultraGrid2);
+            this.panel3_Fill_Panel.ClientArea.Controls.Add(this.splitContainer2);
             this.panel3_Fill_Panel.Cursor = System.Windows.Forms.Cursors.Default;
             this.panel3_Fill_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3_Fill_Panel.Location = new System.Drawing.Point(0, 25);
             this.panel3_Fill_Panel.Name = "panel3_Fill_Panel";
-            this.panel3_Fill_Panel.Size = new System.Drawing.Size(1300, 763);
+            this.panel3_Fill_Panel.Size = new System.Drawing.Size(1077, 496);
             this.panel3_Fill_Panel.TabIndex = 0;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.chartControl1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.ultraGrid2);
+            this.splitContainer2.Size = new System.Drawing.Size(1077, 496);
+            this.splitContainer2.SplitterDistance = 228;
+            this.splitContainer2.TabIndex = 104;
+            // 
+            // chartControl1
+            // 
+            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
+            this.chartControl1.Diagram = xyDiagram1;
+            this.chartControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartControl1.Location = new System.Drawing.Point(0, 0);
+            this.chartControl1.Name = "chartControl1";
+            series1.Name = "Series 1";
+            this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
+        series1};
+            this.chartControl1.Size = new System.Drawing.Size(1077, 228);
+            this.chartControl1.TabIndex = 0;
             // 
             // ultraGrid2
             // 
@@ -670,7 +709,7 @@
             this.ultraGrid2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ultraGrid2.Location = new System.Drawing.Point(0, 0);
             this.ultraGrid2.Name = "ultraGrid2";
-            this.ultraGrid2.Size = new System.Drawing.Size(1300, 763);
+            this.ultraGrid2.Size = new System.Drawing.Size(1077, 264);
             this.ultraGrid2.TabIndex = 103;
             this.ultraGrid2.Text = "ultraGrid2";
             this.ultraGrid2.UseAppStyling = false;
@@ -683,7 +722,7 @@
             this._panel3_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
             this._panel3_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 25);
             this._panel3_Toolbars_Dock_Area_Left.Name = "_panel3_Toolbars_Dock_Area_Left";
-            this._panel3_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 763);
+            this._panel3_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 496);
             this._panel3_Toolbars_Dock_Area_Left.ToolbarsManager = this.ultraToolbarsManager2;
             // 
             // ultraToolbarsManager2
@@ -730,9 +769,9 @@
             this._panel3_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.Transparent;
             this._panel3_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._panel3_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._panel3_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1300, 25);
+            this._panel3_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1077, 25);
             this._panel3_Toolbars_Dock_Area_Right.Name = "_panel3_Toolbars_Dock_Area_Right";
-            this._panel3_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 763);
+            this._panel3_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 496);
             this._panel3_Toolbars_Dock_Area_Right.ToolbarsManager = this.ultraToolbarsManager2;
             // 
             // _panel3_Toolbars_Dock_Area_Bottom
@@ -741,9 +780,9 @@
             this._panel3_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.Transparent;
             this._panel3_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
             this._panel3_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._panel3_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 788);
+            this._panel3_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 521);
             this._panel3_Toolbars_Dock_Area_Bottom.Name = "_panel3_Toolbars_Dock_Area_Bottom";
-            this._panel3_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1300, 0);
+            this._panel3_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1077, 0);
             this._panel3_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager2;
             // 
             // _panel3_Toolbars_Dock_Area_Top
@@ -754,7 +793,7 @@
             this._panel3_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._panel3_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
             this._panel3_Toolbars_Dock_Area_Top.Name = "_panel3_Toolbars_Dock_Area_Top";
-            this._panel3_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1300, 25);
+            this._panel3_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1077, 25);
             this._panel3_Toolbars_Dock_Area_Top.ToolbarsManager = this.ultraToolbarsManager2;
             // 
             // ultraLabel3
@@ -771,42 +810,21 @@
             this.ultraLabel3.Location = new System.Drawing.Point(3, 3);
             this.ultraLabel3.Name = "ultraLabel3";
             this.ultraLabel3.Padding = new System.Drawing.Size(10, 0);
-            this.ultraLabel3.Size = new System.Drawing.Size(1300, 23);
+            this.ultraLabel3.Size = new System.Drawing.Size(1077, 23);
             this.ultraLabel3.TabIndex = 104;
             this.ultraLabel3.Text = "농업용수 회귀수량";
             this.ultraLabel3.UseAppStyling = false;
-            // 
-            // btnCalc
-            // 
-            this.btnCalc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCalc.Location = new System.Drawing.Point(722, 22);
-            this.btnCalc.Name = "btnCalc";
-            this.btnCalc.Size = new System.Drawing.Size(75, 23);
-            this.btnCalc.TabIndex = 105;
-            this.btnCalc.Text = "연산";
-            this.btnCalc.UseVisualStyleBackColor = true;
-            this.btnCalc.Click += new System.EventHandler(this.btnCalc_Click);
-            // 
-            // btnSet_Save
-            // 
-            this.btnSet_Save.Location = new System.Drawing.Point(744, 483);
-            this.btnSet_Save.Name = "btnSet_Save";
-            this.btnSet_Save.Size = new System.Drawing.Size(75, 23);
-            this.btnSet_Save.TabIndex = 5;
-            this.btnSet_Save.Text = "설정저장";
-            this.btnSet_Save.UseVisualStyleBackColor = true;
-            this.btnSet_Save.Click += new System.EventHandler(this.btnSet_Save_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1314, 845);
+            this.ClientSize = new System.Drawing.Size(1091, 578);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmMain";
-            this.Text = "농업용수 회귀수량 산정 V.01";
+            this.Text = "농업용수 회귀수량 산정 ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.tabControl1.ResumeLayout(false);
@@ -829,6 +847,13 @@
             this.panel3.ResumeLayout(false);
             this.panel3_Fill_Panel.ClientArea.ResumeLayout(false);
             this.panel3_Fill_Panel.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGrid2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager2)).EndInit();
             this.ResumeLayout(false);
@@ -871,8 +896,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtInitVolume;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnCalc;
-        private System.Windows.Forms.Button btnSet_Save;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private DevExpress.XtraCharts.ChartControl chartControl1;
     }
 }
 

@@ -11,6 +11,11 @@ namespace AWR.Control
 {
     public static class BayzFileIO
     {
+        /// <summary>
+        /// 강우, 증발산 csv 형식 입력자료 읽기 함수
+        /// </summary>
+        /// <param name="filePath">파일경로</param>
+        /// <returns>입력자료 리스트</returns>
         public static List<AWR_InputTemplate> ReadAWR_InputTemplate(string filePath)
         {
             try
@@ -59,6 +64,11 @@ namespace AWR.Control
             
         }
 
+        /// <summary>
+        /// 농업용수 계산 설정파일 읽기함수
+        /// </summary>
+        /// <param name="filePath">파일경로</param>
+        /// <returns>설정파일 리스트</returns>
         public static List<RequiredDepth> ReadAWR_Set(string filePath)
         {
             try

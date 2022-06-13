@@ -44,7 +44,7 @@ namespace AWR.Control
                     addData.BeginningStorage_Km = beforeVolume;
                 }
 
-                addData.BeginningStorage_mm = addData.BeginningStorage_Km / benefitArea;
+                addData.BeginningStorage_mm = addData.BeginningStorage_Km*1000 / benefitArea;
 
                 
                 ReturnValue rv = new ReturnValue();
@@ -54,8 +54,8 @@ namespace AWR.Control
                 addData.Flag = rv.Flag;
                 addData.IrrigationInflow_ms = rv.Supply;
 
-                addData.IrrigationInflow_km = Math.Round(addData.IrrigationInflow_ms * 24 * 3600 / 1000, 0);
-                addData.IrrigationInflow_mm = (addData.IrrigationInflow_ms * 24 * 3600 / 1000) * 1000 * 1000 / benefitArea;
+                addData.IrrigationInflow_km = addData.IrrigationInflow_ms * 24 * 3600 / 1000;
+                addData.IrrigationInflow_mm = addData.IrrigationInflow_km * 1000 * 1000 / benefitArea;
 
                 addData.Rainfall_mm = input.Rainfall;
                 addData.Rainfall_km = input.Rainfall * benefitArea / 1000;
@@ -71,9 +71,18 @@ namespace AWR.Control
                 addData.EndingStorage_km = CalcEndingStorage(addData.IrrigationDemand_km, addData.BeginningStorage_Km
                     , addData.IrrigationInflow_km, addData.Rainfall_km, addData.NetEvaporation_km);
 
+                beforeVolume = addData.EndingStorage_km;
+
                 addData.EndingStorage_mm = addData.EndingStorage_km * 1000 / benefitArea;
 
-                DateTime curDate = new DateTime(2000, 5, 2);
+                addData.Outflow_km = CalcOutflow(addData.BeginningStorage_Km, addData.IrrigationInflow_km, addData.Rainfall_km
+                    , addData.NetEvaporation_km, addData.IrrigationDemand_km);
+
+                addData.Outflow_ms = addData.Outflow_km * 1000 / benefitArea / (24 * 3600);
+
+                addData.RateofReturn = CalcRateofReturn(addData.IrrigationInflow_ms, addData.Outflow_ms);
+
+                DateTime curDate = new DateTime(2000, 5, 17);
                 if (addData.curDate == curDate)
                 {
                     int kkk = 0;
@@ -82,6 +91,38 @@ namespace AWR.Control
             }
 
             return listResult;
+        }
+
+        private static double CalcRateofReturn(double irrigationInflow_ms, double outflow_ms)
+        {
+            double rateofReturn = 0.0;
+
+            if (irrigationInflow_ms == 0)
+            {
+                rateofReturn = 0.0;
+            }
+            else
+            {
+                rateofReturn = (outflow_ms / irrigationInflow_ms) * 100;
+            }
+
+            return rateofReturn;
+        }
+
+        private static double CalcOutflow(double beginningStorage_Km, double irrigationInflow_km, double rainfall_km, double netEvaporation_km, double irrigationDemand_km)
+        {
+            double outflow = 0.0;
+
+            if ((beginningStorage_Km + irrigationInflow_km + rainfall_km - netEvaporation_km) > irrigationDemand_km)
+            {
+                outflow = beginningStorage_Km + irrigationInflow_km + rainfall_km - netEvaporation_km - irrigationDemand_km;
+            }
+            else
+            {
+                outflow = 0.0;
+            }
+
+            return outflow;
         }
 
         private static double CalcEndingStorage(double irrigationDemand, double beginningStorage, double irrigationInflow, double rainfall, double netEvaporation)
